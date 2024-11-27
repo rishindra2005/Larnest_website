@@ -75,4 +75,4 @@ All copyrights reserved by Risheendra.
 
 ## Contact
 
-For any queries or suggestions, please contact the project maintainer.
+For any queries or suggestions, please contact rishindra.hackbox@gmail.com.
