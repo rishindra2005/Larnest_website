@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo32.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LearnNest offers high-quality, accessible education for everyone. Explore our courses in Mathematics, Science, and Programming.">
+    <meta name="keywords" content="LearnNest, online education, courses, Mathematics, Science, Programming, learning, education platform">
+    <title>LearnNest - High-Quality, Accessible Education for Everyone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo">
+                <a href="index.html">LearnNest</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li id="auth-nav-item">
+                    <a href="login.html" class="nav-button" id="login-signup-btn">Login/Sign Up</a>
+                    <img id="nav-profile-pic" src="" alt="Profile" style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <section id="hero" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Welcome to LearnNest</h1>
+            <img src="logo.jpg" alt="LearnNest Logo" class="hero-logo">
+            <p>High-Quality, Accessible Education for Everyone</p>
+            <a href="#plans" class="cta-button">Get Started</a>
+        </section>
+        <section id="courses" aria-labelledby="courses-heading">
+            <h2 id="courses-heading">Our Courses</h2>
+            <div class="subject-card-container">
+                <div class="subject-card" style="background-image: url('maths C.png');">
+                    <div class="subject-content">
+                        <h3>Mathematics</h3>
+                        <p>Master mathematical concepts with interactive lessons.</p>
+                        <h4>Topics covered:</h4>
+                        <ul>
+                            <li>Algebra: Equations, Functions, and Graphs</li>
+                            <li>Geometry: Euclidean and Non-Euclidean</li>
+                            <li>Calculus: Differentiation and Integration</li>
+                            <li>Statistics and Probability</li>
+                            <li>Number Theory and Abstract Algebra</li>
+                        </ul>
+                        <a href="mathematics.html" class="cta-button">Explore Mathematics</a>
+                    </div>
+                    <div class="subject-logo">
+                        <img src="mathslog.png" alt="Mathematics Logo">
+                    </div>
+                </div>
+                <div class="subject-card" style="background-image: url('science C .png');">
+                    <div class="subject-content">
+                        <h3>Science</h3>
+                        <p>Explore scientific principles through engaging experiments.</p>
+                        <h4>Topics covered:</h4>
+                        <ul>
+                            <li>Physics: Classical Mechanics and Quantum Theory</li>
+                            <li>Chemistry: Organic and Inorganic Reactions</li>
+                            <li>Biology: Cellular Processes and Ecology</li>
+                            <li>Astronomy: Solar System and Cosmology</li>
+                            <li>Earth Science: Geology and Meteorology</li>
+                        </ul>
+                        <a href="science.html" class="cta-button">Discover Science</a>
+                    </div>
+                    <div class="subject-logo">
+                        <img src="sciencelog.png" alt="Science Logo">
+                    </div>
+                </div>
+                <div class="subject-card" style="background-image: url('programming C .png');">
+                    <div class="subject-content">
+                        <h3>Programming</h3>
+                        <p>Learn to code with hands-on projects and expert guidance.</p>
+                        <h4>Topics covered:</h4>
+                        <ul>
+                            <li>Web Development: HTML, CSS, JavaScript</li>
+                            <li>Object-Oriented Programming: Java, Python</li>
+                            <li>Data Structures and Algorithms</li>
+                            <li>Mobile App Development: React Native, Flutter</li>
+                            <li>Machine Learning and Artificial Intelligence</li>
+                        </ul>
+                        <a href="programming.html" class="cta-button">Start Coding</a>
+                    </div>
+                    <div class="subject-logo">
+                        <img src="programminglog.png" alt="Programming Logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans" aria-labelledby="plans-heading">
+            <h2 id="plans-heading">Choose Your Plan</h2>
+            <div class="plan-card-container">
+                <div class="card plan">
+                    <h3>Basic</h3>
+                    <p class="price">₹2999/month</p>
+                    <ul>
+                        <li>Access to all basic courses</li>
+                        <li>Weekly quizzes</li>
+                        <li>Email support</li>
+                        <li>Community forum access</li>
+                        <li>Monthly webinars</li>
+                    </ul>
+                    <a href="#" class="cta-button">Select Plan</a>
+                </div>
+                <div class="card plan">
+                    <h3>Pro</h3>
+                    <p class="price">₹5999/month</p>
+                    <ul>
+                        <li>Access to all courses</li>
+                        <li>Daily challenges</li>
+                        <li>Live tutoring sessions</li>
+                        <li>Priority support</li>
+                        <li>Access to exclusive content</li>
+                        <li>Monthly one-on-one mentoring</li>
+                    </ul>
+                    <a href="#" class="cta-button">Select Plan</a>
+                </div>
+                <div class="card plan">
+                    <h3>Enterprise</h3>
+                    <p class="price">₹9999/month</p>
+                    <ul>
+                        <li>Customized learning paths</li>
+                        <li>Dedicated account manager</li>
+                        <li>API access</li>
+                        <li>24/7 support</li>
+                        <li>On-site training sessions</li>
+                        <li>Quarterly business reviews</li>
+                    </ul>
+                    <a href="#" class="cta-button">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 LearnNest. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginSignupBtn = document.getElementById('login-signup-btn');
+            const navProfilePic = document.getElementById('nav-profile-pic');
+    
+            function checkLoggedIn() {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser) {
+                    // User is logged in
+                    loginSignupBtn.style.display = 'none';
+                    navProfilePic.style.display = 'inline-block';
+                    navProfilePic.src = currentUser.profilePic || 'https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg';
+                    navProfilePic.alt = `${currentUser.fullname}'s profile picture`;
+                } else {
+                    // User is not logged in
+                    loginSignupBtn.style.display = 'inline-block';
+                    navProfilePic.style.display = 'none';
+                }
+            }
+    
+            navProfilePic.addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+    
+            checkLoggedIn();
+        });
+    </script>
+</body>
+
+</html>
+

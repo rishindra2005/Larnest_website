@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User uploaded files
+public/profile_pics/*
+!public/profile_pics/.gitkeep
+
+# JSON data file (if you don't want to track changes to user data)
+users.json

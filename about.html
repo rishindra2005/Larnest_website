@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo32.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnNest - About Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo">
+                <a href="index.html">LearnNest</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li id="auth-nav-item">
+                    <a href="login.html" class="nav-button" id="login-signup-btn">Login/Sign Up</a>
+                    <img id="nav-profile-pic" src="" alt="Profile" style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about-hero" aria-labelledby="about-hero-heading">
+            <div class="about">
+                <h1 id="about-hero-heading">About LearnNest</h1>
+                <p>Empowering minds through innovative education</p>
+            </div>
+        </section>
+
+        <section id="mission" aria-labelledby="mission-heading">
+            <h2 id="mission-heading">Our Mission</h2>
+            <p>At LearnNest, we aim to revolutionize education by making high-quality learning accessible to everyone. Our mission is to bridge the gap between traditional education and the rapidly evolving needs of the modern world. We believe in fostering a love for lifelong learning, enabling individuals to adapt and thrive in an ever-changing global landscape.</p>
+        </section>
+
+        <section id="team" aria-labelledby="team-heading">
+            <h2 id="team-heading">Meet Our Team</h2>
+            <div class="team-members">
+                <div class="team-member card">
+                    <div class="member-photo">
+                        <img src="rishi.jpg" alt="Risheendra" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>Risheendra</h3>
+                        <p class="member-role">Co-founder & Lead Developer</p>
+                        <p>Risheendra is a passionate software engineer with a knack for creating intuitive and efficient learning platforms. With his expertise in full-stack development, he ensures that LearnNest stays at the forefront of educational technology.</p>
+                    </div>
+                </div>
+                <div class="team-member card">
+                    <div class="member-photo">
+                        <img src="kavya.jpg" alt="Kavya" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>Kavya</h3>
+                        <p class="member-role">Co-founder & Content Manager</p>
+                        <p>Kavya brings her wealth of experience in education and curriculum development to LearnNest. Her innovative approach to content creation ensures that our courses are engaging, comprehensive, and tailored to diverse learning styles.</p>
+                    </div>
+                </div>
+                <div class="team-member card">
+                    <div class="member-photo">
+                        <img src="nithin.png" alt="Nithin" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>Nithin</h3>
+                        <p class="member-role">Co-founder & Graphic Designer</p>
+                        <p>Nithin is the creative force behind LearnNest's visual identity. His eye for design and user experience ensures that our platform is not only functional but also visually appealing and easy to navigate.</p>
+                    </div>
+                </div>
+                <div class="team-member card">
+                    <div class="member-photo">
+                        <img src="Jwain.png" alt="Jwalin" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3>Jwalin</h3>
+                        <p class="member-role">Co-founder & HR Manager</p>
+                        <p>Jwalin is the strong presence behind LearnNest's integrety. His eye for leading and user experience ensures that our platform is not only functional but strong.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" aria-labelledby="vision-heading">
+            <h2 id="vision-heading">Our Vision</h2>
+            <p>We envision a world where quality education is not limited by geographical boundaries or socioeconomic factors. LearnNest strives to create a global community of learners and educators, fostering collaboration and innovation. By leveraging cutting-edge technology and pedagogical research, we aim to personalize the learning experience, making it more effective and enjoyable for everyone.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 LearnNest. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginSignupBtn = document.getElementById('login-signup-btn');
+            const navProfilePic = document.getElementById('nav-profile-pic');
+    
+            function checkLoggedIn() {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser) {
+                    // User is logged in
+                    loginSignupBtn.style.display = 'none';
+                    navProfilePic.style.display = 'inline-block';
+                    navProfilePic.src = currentUser.profilePic || 'https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg';
+                    navProfilePic.alt = `${currentUser.fullname}'s profile picture`;
+                } else {
+                    // User is not logged in
+                    loginSignupBtn.style.display = 'inline-block';
+                    navProfilePic.style.display = 'none';
+                }
+            }
+    
+            navProfilePic.addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+    
+            checkLoggedIn();
+        });
+    </script>
+</body>
+
+</html>
+

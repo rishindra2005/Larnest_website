@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo32.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up - LearnNest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #9c27b0;
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --card-background: #1e1e1e;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin: -20px -20px 20px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .auth-tab.active {
+            background-color: var(--card-background);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+            /* ... (previous styles remain unchanged) ... */
+
+            .auth-forms {
+                position: relative;
+                height: 400px; /* Increased from 300px to 400px */
+                transition: height 0.3s ease;
+            }
+
+            .auth-form {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 95%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+                pointer-events: none;
+                padding-bottom: 20px; /* Added padding at the bottom */
+            }
+
+            .auth-form.active {
+                opacity: 1;
+                transform: translateX(0);
+                pointer-events: all;
+            }
+
+            /* ... (rest of the styles remain unchanged) ... */
+
+        form label, form input, form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        form button {
+            background-color: var(--primary-color);
+        color: var(--text-color);
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 50%; /* Reduce width to 50% */
+        margin: 0 auto; /* Center the button */
+        display: block; /* Ensure it takes up its own line */
+  
+        }
+
+        form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+    #profile-card {
+        background-color: var(--card-background);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--primary-color);
+    }
+
+
+    #profile-name {
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    #profile-email {
+        color: var(--text-color);
+    }
+    .sign-out-btn {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+    
+    .sign-out-btn:hover {
+        background-color: var(--secondary-color);
+    }
+ 
+    .profile-pic-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .profile-pic-preview {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid var(--primary-color);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .profile-pic-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-pic-label {
+        cursor: pointer;
+        text-align: center;
+        font-size: 0.9em;
+        color: var(--text-color);
+    }
+</style>
+
+
+</head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo">
+                <a href="index.html">LearnNest</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li id="auth-nav-item">
+                    <a href="login.html" class="nav-button" id="login-signup-btn">Login/Sign Up</a>
+                    <img id="nav-profile-pic" src="" alt="Profile" style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<div id="user-info" style="display: none;">
+    <span id="welcome-message"></span>
+</div>
+
+
+    <main>
+        <div class="auth-container">
+            <div id="profile-card" style="display: none;">
+                <h2>Profile</h2>
+                <div class="profile-content">
+                    <img id="profile-pic" src="" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+                    <h3 id="profile-name"></h3>
+                    <p id="profile-email"></p>
+                    <button id="sign-out-btn" class="sign-out-btn">Sign Out</button>
+                </div>
+            </div>
+
+
+            <div id="auth-forms-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="login-tab">Login</div>
+                    <div class="auth-tab" id="signup-tab">Sign Up</div>
+                </div>
+    
+            <div class="auth-forms">
+                <div class="auth-form active" id="login-form">
+                    <h2>Login</h2>
+                    <form action="#" method="post">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+
+                <div class="auth-form" id="signup-form">
+    <h2>Sign Up</h2>
+    <form action="/api/signup" method="post" id="signup-form-element" enctype="multipart/form-data">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" name="email" required>
+
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+
+        <div class="profile-pic-container">
+            <div id="profile-pic-preview" class="profile-pic-preview">
+                <img id="preview-image" src="https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg" alt="Profile picture preview">
+            </div>
+            <label for="profilePic" class="profile-pic-label">
+                Drag & Drop or Click to Upload
+                <input type="file" id="profilePic" name="profilePic" accept="image/*" style="display: none;">
+            </label>
+        </div>
+
+        <p id="password-message" style="color: red; display: none;">Passwords do not match</p>
+        <button type="submit">Sign Up</button>
+    </form>
+            </div>
+        </div>
+    </main>
+
+
+    <div style:><h1><br><br></h1></div>
+    <footer>
+        <p>&copy; 2023 LearnNest. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const loginFormElement = loginForm.querySelector('form');
+        const signupFormElement = document.getElementById('signup-form-element');
+        const passwordInput = document.getElementById('signup-password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordMessage = document.getElementById('password-message');
+        const userInfo = document.getElementById('user-info');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const signOutBtn = document.getElementById('sign-out-btn');
+        const authContainer = document.querySelector('.auth-container');
+        const loginSignupBtn = document.getElementById('login-signup-btn');
+        const navProfilePic = document.getElementById('nav-profile-pic');
+
+        const profilePicPreview = document.getElementById('profile-pic-preview');
+    const previewImage = document.getElementById('preview-image');
+    const profilePicInput = document.getElementById('profilePic');
+
+    let uploadedFile = null;
+
+    function handleFileSelect(file) {
+        if (file) {
+            uploadedFile = file;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    profilePicInput.addEventListener('change', function(e) {
+        handleFileSelect(this.files[0]);
+    });
+
+    profilePicPreview.addEventListener('click', function() {
+        profilePicInput.click();
+    });
+
+    // Prevent default behavior for drag events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        profilePicPreview.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    // Highlight drop area when item is dragged over it
+    ['dragenter', 'dragover'].forEach(eventName => {
+        profilePicPreview.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        profilePicPreview.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        profilePicPreview.style.border = '2px dashed var(--primary-color)';
+    }
+
+    function unhighlight(e) {
+        profilePicPreview.style.border = '2px solid var(--primary-color)';
+    }
+
+    // Handle dropped files
+    profilePicPreview.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const file = dt.files[0];
+        handleFileSelect(file);
+    }
+
+
+        function displayProfileCard(user) {
+            document.title = "Profile - LearnNest";
+            const profileCard = document.getElementById('profile-card');
+            const authFormsContainer = document.getElementById('auth-forms-container');
+            const profilePic = document.getElementById('profile-pic');
+            const profileName = document.getElementById('profile-name');
+            const profileEmail = document.getElementById('profile-email');
+
+            console.log('User object:', user); // Add this line
+            if (user.profilePic) {
+                profilePic.src = user.profilePic;
+                console.log('Setting profile pic to:', user.profilePic); // Add this line
+            } else {
+                profilePic.src = 'https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg';
+                console.log('Using default profile pic'); // Add this line
+            }
+            profilePic.alt = `${user.fullname}'s profile picture`;
+            profileName.textContent = user.fullname;
+            profileEmail.textContent = user.email;
+
+            profileCard.style.display = 'block';
+            authFormsContainer.style.display = 'none';
+
+            // Add event listener to the sign-out button
+            const signOutBtn = document.getElementById('sign-out-btn');
+            signOutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                checkLoggedIn();
+            });
+        }
+
+
+
+
+    
+        function switchTab(activeTab, activeForm, inactiveTab, inactiveForm) {
+            activeTab.classList.add('active');
+            activeForm.classList.add('active');
+            inactiveTab.classList.remove('active');
+            inactiveForm.classList.remove('active');
+            adjustFormHeight();
+        }
+
+        function adjustFormHeight() {
+            const activeForm = document.querySelector('.auth-form.active');
+            const authForms = document.querySelector('.auth-forms');
+            authForms.style.height = `${activeForm.offsetHeight}px`;
+        }
+
+        loginTab.addEventListener('click', () => {
+            switchTab(loginTab, loginForm, signupTab, signupForm);
+        });
+
+        signupTab.addEventListener('click', () => {
+            switchTab(signupTab, signupForm, loginTab, loginForm);
+        });
+
+        window.addEventListener('load', () => {
+            adjustFormHeight();
+            checkLoggedIn();
+        });
+
+        function validatePassword() {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordMessage.style.display = 'block';
+                return false;
+            } else {
+                passwordMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        confirmPasswordInput.addEventListener('input', validatePassword);
+
+        passwordInput.addEventListener('focus', function() {
+            this.title = "Password must contain at least one number, one uppercase and lowercase letter, and be at least 8 characters long";
+        });
+
+        // Login form submission
+        loginFormElement.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        console.log('Login response:', data);
+
+        if (response.ok) {
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            alert('Login successful!');
+            displayProfileCard(data.user);
+
+            // Add this line to refresh the page after a short delay
+            setTimeout(() => {
+                window.location.reload();
+            }, 1); // 1000 milliseconds = 1 second delay
+
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again 33.');
+    }
+});
+
+            // Signup form submission
+            signupFormElement.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        if (!validatePassword()) {
+            return;
+        }
+
+        const formData = new FormData(this);
+
+        // If a file was uploaded via drag and drop, add it to the form data
+        if (uploadedFile) {
+            formData.set('profilePic', uploadedFile);
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/api/signup', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Signup successful! Please log in.');
+                switchTab(loginTab, loginForm, signupTab, signupForm);
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+
+
+            function checkLoggedIn() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+        displayProfileCard(currentUser);
+        userInfo.style.display = 'block';
+        authContainer.style.display = 'block';
+        
+        // Update navigation
+        loginSignupBtn.style.display = 'none';
+        navProfilePic.style.display = 'inline-block';
+        navProfilePic.src = currentUser.profilePic || 'https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg';
+        navProfilePic.alt = `${currentUser.fullname}'s profile picture`;
+    } else {
+        document.title = "Login/Sign Up - LearnNest";
+        userInfo.style.display = 'none';
+        authContainer.style.display = 'block';
+        document.getElementById('profile-card').style.display = 'none';
+        document.getElementById('auth-forms-container').style.display = 'block';
+        
+        // Update navigation
+        loginSignupBtn.style.display = 'inline-block';
+        navProfilePic.style.display = 'none';
+    }
+}
+        
+
+navProfilePic.addEventListener('click', () => {
+    window.location.href = 'login.html';
+});
+
+        signOutBtn.addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            checkLoggedIn();
+        });
+        window.addEventListener('load', checkLoggedIn);
+
+    </script>
+

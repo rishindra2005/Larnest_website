@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo32.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnNest - Mathematics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo">
+                <a href="index.html">LearnNest</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li id="auth-nav-item">
+                    <a href="login.html" class="nav-button" id="login-signup-btn">Login/Sign Up</a>
+                    <img id="nav-profile-pic" src="" alt="Profile" style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <img src="mathslog.png" alt="Mathematics Logo" class="hero-logo">
+            <p>Master mathematical concepts with interactive lessons.</p>
+            <a href="index.html#plans" class="cta-button">Enroll Now</a>
+        </section>
+
+        <section id="topics">
+            <h2>Mathematics Topics</h2>
+
+            <div class="math-gif">
+                <!-- Add your animated GIF here -->
+                <img src="maths.gif" alt="Mathematics Animation" class="topic-gif">
+            </div>
+
+            <div class="topic-flowchart">
+                <div class="topic-node main-topic">
+                    <h3>Mathematics</h3>
+                </div>
+                <div class="topic-branches">
+                    <div class="topic-node">
+                        <h4>Algebra</h4>
+                        <ul>
+                            <li>Linear Equations</li>
+                            <li>Quadratic Functions</li>
+                            <li>Polynomial Expressions</li>
+                            <li>Systems of Equations</li>
+                            <li>Matrices and Determinants</li>
+                        </ul>
+                    </div>
+                    <div class="topic-node">
+                        <h4>Geometry</h4>
+                        <ul>
+                            <li>Euclidean Geometry</li>
+                            <li>Analytic Geometry</li>
+                            <li>Trigonometry</li>
+                            <li>Non-Euclidean Geometries</li>
+                            <li>Transformations</li>
+                        </ul>
+                    </div>
+                    <div class="topic-node">
+                        <h4>Calculus</h4>
+                        <ul>
+                            <li>Limits and Continuity</li>
+                            <li>Differentiation</li>
+                            <li>Integration</li>
+                            <li>Multivariable Calculus</li>
+                            <li>Differential Equations</li>
+                        </ul>
+                    </div>
+                    <div class="topic-node">
+                        <h4>Statistics and Probability</h4>
+                        <ul>
+                            <li>Descriptive Statistics</li>
+                            <li>Probability Theory</li>
+                            <li>Inferential Statistics</li>
+                            <li>Regression Analysis</li>
+                            <li>Bayesian Statistics</li>
+                        </ul>
+                    </div>
+                    <div class="topic-node">
+                        <h4>Number Theory</h4>
+                        <ul>
+                            <li>Prime Numbers</li>
+                            <li>Modular Arithmetic</li>
+                            <li>Cryptography</li>
+                            <li>Diophantine Equations</li>
+                            <li>Algebraic Number Theory</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 LearnNest. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginSignupBtn = document.getElementById('login-signup-btn');
+            const navProfilePic = document.getElementById('nav-profile-pic');
+    
+            function checkLoggedIn() {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser) {
+                    // User is logged in
+                    loginSignupBtn.style.display = 'none';
+                    navProfilePic.style.display = 'inline-block';
+                    navProfilePic.src = currentUser.profilePic || 'https://thumbs.dreamstime.com/b/iconic-image-social-networks-anonymous-very-personal-character-profile-over-bright-violet-background-148178936.jpg';
+                    navProfilePic.alt = `${currentUser.fullname}'s profile picture`;
+                } else {
+                    // User is not logged in
+                    loginSignupBtn.style.display = 'inline-block';
+                    navProfilePic.style.display = 'none';
+                }
+            }
+    
+            navProfilePic.addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+    
+            checkLoggedIn();
+        });
+    </script>
+</body>
+
+</html>
